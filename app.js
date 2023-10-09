@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchInput = null;
     let searchButton = null;
     let searchResultsTable = document.getElementById('searchResultsTable'); // Move the declaration here
-
+    let column1ToLibraryDayMapping = {};
     document.getElementById('searchResultsTable').addEventListener('click', (event) => {
         const selectedRow = event.target.closest('tr');
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
              const mappings = data;
 
              const column1ToColumn10Mapping = {};
-             const column1ToLibraryDayMapping = {};
+
 
              mappings.forEach(mapping => {
                  column1ToColumn10Mapping[mapping.column1] = mapping.column10;
