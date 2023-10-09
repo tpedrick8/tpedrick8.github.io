@@ -426,6 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
             table.appendChild(tableBody);
 
             searchResultsTable.appendChild(table);
+            removeTenthColumn();
         } else {
             console.error('searchResultsTable element not found');
         }
@@ -445,3 +446,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+function removeTenthColumn() {
+    const searchResultsTable = document.querySelector('.search-results-table');
+
+    if (searchResultsTable) {
+        const tableRows = searchResultsTable.querySelectorAll('tr');
+
+        tableRows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length > 10) {
+                // Remove the 10th column (index 9) from each row
+                row.removeChild(cells[9]);
+            }
+        });
+    } else {
+        console.error('searchResultsTable element not found');
+    }
+}
