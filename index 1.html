@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate CSV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Generate CSV</h1>
+
+    <!-- Input for selecting a CSV file -->
+    <label for="csvFile">Select a .CSV file:</label>
+    <input type="file" id="csvFile" accept=".csv">
+    <br><br>
+    <label for="search">Search:</label>
+    <input type="text" id="search">
+    <button id="searchButton">Search</button>
+    <button id="clearButton">Clear</button>
+    <button id="generateCSVButton">Generate CSV</button><button id="selectAllButton">Select All</button>
+
+
+    <!-- Second table for displaying selected rows -->
+    <h2>Selected Rows</h2>
+    <table id="selectedTable"></table>
+
+    <!-- Search box and buttons -->
+
+
+    <!-- Result display area -->
+    <div id="searchResults"></div>
+
+    <!-- First table for displaying CSV data (hidden by default) -->
+    <table id="csvDataTable" style="display: none;"></table>
+
+    <!-- Include the script.js file -->
+    <script src="script.js"></script>
+</body>
+</html>

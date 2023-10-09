@@ -1,0 +1,42 @@
+/* Style for both the Search and Choose File buttons */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the Search button */
+#searchButton {
+    margin-right: 10px;
+}
+
+/* Style for the Choose File button */
+.file-label {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+/* Hide the actual file input */
+#csvFile {
+    display: none;
+}
