@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let searchInput = null;
     let searchButton = null;
     let searchResultsTable = document.getElementById('searchResultsTable'); // Move the declaration here
-
+    let result;
     document.getElementById('searchResultsTable').addEventListener('click', (event) => {
         const selectedRow = event.target.closest('tr');
 
