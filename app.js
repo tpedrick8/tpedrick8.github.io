@@ -38,52 +38,40 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(searchInput);
     container.appendChild(searchButton);
 
+    // Create a new table for selected entries
+    const selectedEntriesTable = document.createElement('table');
+    selectedEntriesTable.classList.add('selected-entries-table');
+    const selectedEntriesTableBody = document.createElement('tbody');
+    selectedEntriesTable.appendChild(selectedEntriesTableBody);
+
+    // Event listener for clicking on the 'searchResultsTable'
+    searchResultsTable.addEventListener('click', (event) => {
+        const selectedRow = event.target.closest('tr');
+
+        if (selectedRow && selectedRow !== searchResultsTable.firstChild) {
+            const selectedRowIndex = Array.from(searchResultsTable.querySelectorAll('tr')).indexOf(selectedRow);
+            const selectedRowData = result.data[selectedRowIndex - 1]; // Subtract 1 to account for the header row
+
+            // Check if the selected row is already in the selected entries table
+            const existingRow = selectedEntriesTable.querySelector(`tr[data-index="${selectedRowIndex}"]`);
+
+            if (!existingRow) {
+                // If the row is not in the selected entries table, add it
+                const newRow = document.createElement('tr');
+                newRow.setAttribute('data-index', selectedRowIndex);
+                selectedRowData.forEach(cellData => {
+                    const td = document.createElement('td');
+                    td.textContent = cellData;
+                    newRow.appendChild(td);
+                });
+                selectedEntriesTableBody.appendChild(newRow);
+            }
+        }
+    });
+
     // Function to create and populate the search results table
     function createTable(data) {
-        // Check if searchResultsTable is null before accessing its firstChild
-        if (searchResultsTable) {
-            searchResultsTable.innerHTML = '';
-
-            if (data.length === 0) {
-                searchResultsTable.textContent = 'No results found.';
-                return;
-            }
-
-            const table = document.createElement('table');
-            table.classList.add('search-results-table');
-
-            const tableHeader = document.createElement('thead');
-            const headerRow = document.createElement('tr');
-
-            const headers = ['Home Room', 'Teacher', 'Student Number', 'First Name', 'Last Name', 'Preferred Name', 'Student Email', 'Student User Name', 'Teacher Email', '', 'Student Pass', 'Library Day', 'Division', 'Cybrarian', 'Books'];
-
-            headers.forEach(headerText => {
-                const th = document.createElement('th');
-                th.textContent = headerText;
-                headerRow.appendChild(th);
-            });
-
-            tableHeader.appendChild(headerRow);
-            table.appendChild(tableHeader);
-
-            const tableBody = document.createElement('tbody');
-
-            data.forEach(rowData => {
-                const row = document.createElement('tr');
-                rowData.forEach(cellData => {
-                    const cell = document.createElement('td');
-                    cell.textContent = cellData;
-                    row.appendChild(cell);
-                });
-                tableBody.appendChild(row);
-            });
-
-            table.appendChild(tableBody);
-
-            searchResultsTable.appendChild(table);
-        } else {
-            console.error('searchResultsTable element not found');
-        }
+        // ... (existing code for creating the search results table)
     }
 
     // Attach click event listener to search button
@@ -100,33 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Event listener for clicking on the 'searchResultsTable'
-    searchResultsTable.addEventListener('click', (event) => {
-        const selectedRow = event.target.closest('tr');
-
-        if (selectedRow && selectedRow !== searchResultsTable.firstChild) {
-            const selectedRowIndex = Array.from(searchResultsTable.querySelectorAll('tr')).indexOf(selectedRow);
-            const selectedRowData = result.data[selectedRowIndex - 1]; // Subtract 1 to account for the header row
-
-            // Check if the selected row is already in the table
-            const existingRow = searchResultsTable.querySelector(`tbody tr:nth-child(${selectedRowIndex})`);
-
-            if (existingRow) {
-                // If the same row is clicked again, remove it from the table
-                searchResultsTable.querySelector('tbody').removeChild(existingRow);
-            } else {
-                // If a new row is clicked, add it to the table
-                const newRow = document.createElement('tr');
-                selectedRowData.forEach(cellData => {
-                    const td = document.createElement('td');
-                    td.textContent = cellData;
-                    newRow.appendChild(td);
-                });
-
-                searchResultsTable.querySelector('tbody').appendChild(newRow);
-            }
-        }
-    });
+    // Append the selected entries table to the container
+    container.appendChild(selectedEntriesTable);
 
     // Automatically run the script when the file input changes
     csvFileInput.addEventListener('change', () => {
