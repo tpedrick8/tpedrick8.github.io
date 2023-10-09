@@ -2,118 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSV Column Header Changer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate CSV</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <style>
-
-    /* Body */
-    body {
-        background-color: #f0f0f0; /* Light Gray */
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Header */
-    h1 {
-        color: #333; /* Dark Gray */
-    }
-
-    /* Buttons */
-    button {
-        background-color: #0074cc; /* Navy Blue */
-        color: #fff; /* White */
-        border: none;
-        padding: 10px 20px;
-        margin: 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #005aa3; /* Darker Navy Blue on Hover */
-    }
-
-    /* Input Fields */
-    input[type="text"] {
-        padding: 10px;
-        margin: 10px;
-        border: 1px solid #ccc; /* Light Gray */
-        border-radius: 4px;
-    }
-
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 10px;
-    }
-
-    th, td {
-        border: 1px solid #ddd; /* Light Gray */
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #0074cc; /* Navy Blue */
-        color: #fff; /* White */
-    }
-
-    /* Download Link */
-    a#downloadLink {
-        display: none;
-        color: #0074cc; /* Navy Blue */
-        text-decoration: none;
-        font-weight: bold;
-        margin: 10px;
-    }
-
-    /* Search Results */
-    #searchResultsTable {
-        margin: 10px;
-    }
-
-    /* Container Div */
-    #container {
-        padding: 20px;
-    }
-
-    /* Search Button */
-    #searchButton {
-        background-color: #0074cc; /* Navy Blue */
-        color: #fff; /* White */
-        border: none;
-        padding: 10px 20px;
-        margin: 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-    }
-
-    #searchButton:hover {
-        background-color: #005aa3; /* Darker Navy Blue on Hover */
-    }
-    </style>
-
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Upload a CSV File</h1>
-    <label for="csvFile" class="file-label">
-        <span class="file-button">Choose File</span>
-        <input type="file" id="csvFile" style="display: none;">
-    </label>
+    <h1>Generate CSV</h1>
 
-    <!-- <button id="uploadButton">Upload and Change Column Headers</button> -->
+    <!-- Input for selecting a CSV file -->
+    <label for="csvFile">Select a .CSV file:</label>
+    <input type="file" id="csvFile" accept=".csv">
+    <br><br>
+    <label for="search">Search:</label>
+    <input type="text" id="search">
+    <button id="searchButton">Search</button>
+    <button id="clearButton">Clear</button>
+    <button id="generateCSVButton">Generate CSV</button><button id="selectAllButton">Select All</button>
 
-    <h2>Modified CSV File:</h2>
-    <a id="downloadLink" style="display: none;" download>Download Modified CSV</a>
-    <div id="container"></div>
 
-    <!-- Add the searchResultsTable element here -->
-    <div id="searchResultsTable"></div>
+    <!-- Second table for displaying selected rows -->
+    <h2>Selected Rows</h2>
+    <table id="selectedTable"></table>
 
-    <script src="app.js"></script>
+    <!-- Search box and buttons -->
+
+
+    <!-- Result display area -->
+    <div id="searchResults"></div>
+
+    <!-- First table for displaying CSV data (hidden by default) -->
+    <table id="csvDataTable" style="display: none;"></table>
+
+    <!-- Include the script.js file -->
+    <script src="script.js"></script>
 </body>
 </html>
