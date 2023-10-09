@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchButton = null;
     let searchResultsTable = document.getElementById('searchResultsTable'); // Move the declaration here
     let column1ToLibraryDayMapping = {};
+     let column1ToColumn10Mapping = {};
     document.getElementById('searchResultsTable').addEventListener('click', (event) => {
         const selectedRow = event.target.closest('tr');
 
