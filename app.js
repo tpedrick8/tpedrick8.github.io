@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tableHeader = document.createElement('thead');
             const headerRow = document.createElement('tr');
 
-            const headers = ['Home Room', 'Teacher', 'Student Number', 'First Name', 'Last Name', 'Preferred Name', 'Student Email', 'Student User Name', 'Teacher Email', 'Student Pass', 'Library Day', 'Division', 'Cybrarian', 'Books'];
+            const headers = ['Home Room', 'Teacher', 'Student Number', 'First Name', 'Last Name', 'Preferred Name', 'Student Email', 'Student User Name', 'Teacher Email', '', 'Student Pass', 'Library Day', 'Division', 'Cybrarian', 'Books'];
 
             headers.forEach(headerText => {
                 const th = document.createElement('th');
